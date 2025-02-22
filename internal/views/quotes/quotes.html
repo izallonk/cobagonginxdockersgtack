@@ -1,0 +1,29 @@
+{{define "quotes/quotes.html"}}
+    <div id="Quotes" >
+        <ul >
+        {{range .listdto}}
+                <hr/>
+                <li>
+                    
+                    <p>{{.Message}}, ({{.Author}})</p>
+                </li>
+            
+                
+        {{end}}
+        </ul>
+        {{ if  gt .pages.NextPage .pages.CurrentPage}}
+            <span
+          hx-get="quote?page={{.pages.NextPage}}"
+          hx-swap="beforeend"
+          hx-target="#Quotes"
+          hx-trigger="revealed"
+        >
+        </span>
+        {{end}}
+        <hr/>
+    </div>
+
+</tr>
+
+{{end}}
+

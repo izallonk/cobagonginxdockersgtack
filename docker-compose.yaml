@@ -1,0 +1,18 @@
+service :
+    website :
+        build : "."
+        volumes : ./quotes.sqlite
+        port : 
+            -    "54848"
+        restart : always
+        deploy:
+                replicas : 2
+
+    nginx :
+        image : nginx:stable-alpine
+        volumes : 
+            - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+        depends-on :
+            -website
+        port : 
+            - "548484:80"
